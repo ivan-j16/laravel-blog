@@ -22,3 +22,7 @@ Route::get('/contact','PagesController@getContact');
 Route::get('/messages','MessagesController@getMessages');
 Route::post('/contact/submit','MessagesController@submit');
 
+
+Auth::routes();
+
+Route::get('/dashboard', 'DashboardController@index');
