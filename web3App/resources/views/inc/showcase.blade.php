@@ -1,7 +1,6 @@
 <div class="jumbotron text-center">
     <div class="container">
-        <h1>Welcome to our site</h1>
-        <p class="lead">Welcome to our brand new Laravel-powered website.
-        This site uses Laravel version ...</p>
+        <h1>Welcome to Future Classics</h1>
+        <p class="lead">Welcome to our blog website.</p>
     </div>
 </div>

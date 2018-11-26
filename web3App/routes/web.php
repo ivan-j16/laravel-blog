@@ -26,3 +26,5 @@ Route::post('/contact/submit','MessagesController@submit');
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
+
+Route::resource('posts','PostsController');

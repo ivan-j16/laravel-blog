@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    WEB3
+                    Future Classics
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -99,7 +99,7 @@
             </div>
 
             <footer id="footer" class="text-center">
-                <p>Copyright 2019 &copy; YALLA !</p>
+                <p>Copyright 2019 &copy; FutureClassics </p>
             </footer>
         </main>
     </div>

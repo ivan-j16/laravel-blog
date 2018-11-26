@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//We use pages controller to return pages based on the method, because we do not want to overload the routes file.
 class PagesController extends Controller
 {
     public function getHome(){
