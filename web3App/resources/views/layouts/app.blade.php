@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -10,7 +11,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -41,6 +43,12 @@
                         </li>
                         <li class="{{Request::is('contact') ? 'active' : ''}}">
                             <a class="nav-link" href="/contact">Contact</a>
+                        </li>
+                        <li class="{{Request::is('posts') ? 'active' : ''}}">
+                            <a class="nav-link" href="/posts">Blog</a>
+                        </li>
+                        <li class="{{Request::is('posts/create') ? 'active' : ''}}">
+                            <a class="nav-link" href="/posts/create">Create Post</a>
                         </li>
                     </ul>
 
@@ -91,6 +99,7 @@
                         @include('inc.messages')
                         @yield('content')
 
+
                     </div>
                     <div class="col-md-4 col-lg-4">
                         @include('inc.sidebar')
@@ -103,5 +112,10 @@
             </footer>
         </main>
     </div>
+
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'article-ckeditor' );
+    </script>
 </body>
 </html>
