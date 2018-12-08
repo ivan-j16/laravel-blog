@@ -18,13 +18,28 @@ Route::get('/about','PagesController@getAbout');
 Route::get('/contact','PagesController@getContact');
 
 
-
+//Messages
 Route::get('/messages','MessagesController@getMessages');
 Route::post('/contact/submit','MessagesController@submit');
 
-
+//User and admin auth routes
 Auth::routes();
 
+//User dashboard
 Route::get('/dashboard', 'DashboardController@index');
 
+//User profile pages
+Route::get('/profile', 'UserController@profile');
+Route::post('/profile', 'UserController@update_avatar');
+
+//Resource controller for the posts
 Route::resource('posts','PostsController');
+
+//Admin
+Route::prefix('admin')->group(function() {
+    Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/', 'AdminController@index')->name('admin.dashboard');
+});
+
+

@@ -13,6 +13,9 @@
         {{-- a tool used for text editing. The script is loaded into app.blade --}}
         {{Form::textarea('body', $post->body, ['id'=>'article-ckeditor','class' => 'form-control', 'placeholder' => 'Body Text'])}}
     </div>
+    <div>
+        <img src="{{ asset('storage/cover_images/' . $post->cover_image) }}" />
+    </div>
     <div class="form-group">
         {{Form::file('cover_image')}}
     </div>
