@@ -12,6 +12,15 @@
     <small>Writen on {{$post->created_at}} by {{$post->user->name}}</small>
     <hr>
     <a href="/posts" class="btn btn-secondary">Go Back</a>
+    <a href="{{action('PostsController@downloadPDF', $post->id)}}">Download as PDF</a>
+
+    {{--{!! Form::open(['action' => ['PostsController@downloadPDF',$post->id], 'method' => 'POST','class' => 'float-right']) !!}--}}
+
+    {{--{{Form::submit('Download as PDF',['class' => 'btn btn-secondary'])}}--}}
+
+    {{--{!! Form::close() !!}--}}
+
+
     <hr>
     @if(!Auth::guest())
             @if(Auth::user()->id==$post->user_id)

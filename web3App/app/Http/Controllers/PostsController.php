@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use Barryvdh\DomPDF\Facade as PDF;
+
 
 class PostsController extends Controller
 {
@@ -15,8 +17,9 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except'=>['index','show']]);
+        $this->middleware('auth',['except'=>['index','show','downloadPDF']]);
     }
+
 
 
     /**
@@ -176,6 +179,22 @@ class PostsController extends Controller
 
         $post->delete();
         return redirect('/posts')->with('success','Post Removed');
+
+    }
+
+    public function downloadPDF($id)
+    {
+        PDF::setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+
+
+
+        $post = Post::find($id);
+
+        $pdf = PDF::loadView('post-pdf',['post'=>$post]);
+        return $pdf->download('post.pdf');
+
+
+
 
     }
 }
