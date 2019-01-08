@@ -17,6 +17,7 @@ Route::get('/about','PagesController@getAbout');
 Route::get('/contact','PagesController@getContact');
 
 
+
 //Messages
 Route::get('/messages','MessagesController@getMessages');
 Route::post('/contact/submit','MessagesController@submit');
@@ -32,8 +33,11 @@ Route::get('/profile', 'UserController@profile');
 Route::post('/profile', 'UserController@update_avatar');
 
 //Resource controller for the posts
+Route::get('posts/search','PostsController@search');
 Route::resource('posts','PostsController');
 Route::get('posts/downloadPDF/{id}','PostsController@downloadPDF');
+
+
 
 
 //Admin

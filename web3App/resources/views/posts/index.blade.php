@@ -1,7 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Posts</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Posts</h1>
+        </div>
+        <div class="col-md-4">
+            <form action="posts/search" method="get">
+                <div class="input-group">
+                    <input type="search" name="search" class="form-control">
+                        <span class="input-group-prepend">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    {{--<div class="row">--}}
+        {{--<div class="col-md-6">--}}
+        {{--<h1>Posts</h1>--}}
+        {{--</div>--}}
+        {{--<div class="col-md-4">--}}
+                {{--<div class="input-group">--}}
+                {{--<input type="search" name="search" class="form-control">--}}
+                {{--</div>--}}
+            {{--<a href="{{action('PostsController@search')}}">Search</a>--}}
+
+        {{--</div>--}}
+    {{--</div>--}}
+
+
+
+
+
+
+
+
+    {{--{!! Form::open(['action'=>'PostsController@search', 'method'=>'POST']) !!}--}}
+    {{--<div class="form-group">--}}
+        {{--{{Form::label('search','Search')}}--}}
+        {{--{{Form::text('search','',['class'=>'form-control','placeholder'=>'Search Term'])}}--}}
+    {{--</div>--}}
+    {{--{{Form::submit('Submit',['class'=>'btn btn-primary'])}}--}}
+    {{--{!! Form::close() !!}--}}
+
+
     @if(count($posts)>0)
         @foreach($posts as $post)
             <div class="card">

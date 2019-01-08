@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use Barryvdh\DomPDF\Facade as PDF;
-
+use Image;
+use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
@@ -17,7 +18,7 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth',['except'=>['index','show','downloadPDF']]);
+        $this->middleware('auth',['except'=>['index','show','downloadPDF','search']]);
     }
 
 
@@ -45,6 +46,21 @@ class PostsController extends Controller
         return view('posts.create');
     }
 
+
+    public function search(Request $request)
+    {
+        $this->validate($request, [
+            'search' => 'required|alpha|min:3'
+        ]);
+        $search = $request->input('search');
+        //$search = $request->input('search');
+       //$posts = DB::table('posts')->where('title', 'like', '%'.$search.'%')->get();
+        $posts = Post::where('title', 'like', '%'.$search.'%' )->paginate(10);
+       // return view('posts.index')->with($posts, compact('posts'));  ->with('post',$post)
+        return view('posts.index')->with('posts',$posts);
+
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -61,6 +77,9 @@ class PostsController extends Controller
 
         // Handle File Upload
         if($request->hasFile('cover_image')){
+            $avatar = $request->file('cover_image');
+            //Load watermark
+            $watermark = Image::make(public_path('storage/cover_images/watermark.png'))->resize(100, 75);
             // Get filename with the extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             // Get just filename
@@ -70,7 +89,8 @@ class PostsController extends Controller
             // Filename to store
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // Upload Image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            Image::make($avatar)->insert($watermark, 'bottom-right',3, 3)->save( public_path('storage/cover_images/' . $fileNameToStore ) );
+           // $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -133,6 +153,9 @@ class PostsController extends Controller
         ]);
 
         if($request->hasFile('cover_image')){
+            $avatar = $request->file('cover_image');
+            //Load watermark
+            $watermark = Image::make(public_path('storage/cover_images/watermark.png'))->resize(100, 75);
             // Get filename with the extension
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             // Get just filename
@@ -142,7 +165,7 @@ class PostsController extends Controller
             // Filename to store
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // Upload Image
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            Image::make($avatar)->insert($watermark, 'bottom-right',3, 3)->save( public_path('storage/cover_images/' . $fileNameToStore ) );
         }
 
         //Create post

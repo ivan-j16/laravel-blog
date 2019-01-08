@@ -11,8 +11,8 @@
 
 @section('content')
 
-    <h1>Home</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque expedita fuga mollitia perferendis sint? Ad architecto asperiores consequatur culpa cupiditate dolorum facere, hic libero nesciunt non provident qui repudiandae rerum.</p>
+    {{--<h1>Home</h1>--}}
+    {{--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque expedita fuga mollitia perferendis sint? Ad architecto asperiores consequatur culpa cupiditate dolorum facere, hic libero nesciunt non provident qui repudiandae rerum.</p>--}}
 
 @endsection
 
